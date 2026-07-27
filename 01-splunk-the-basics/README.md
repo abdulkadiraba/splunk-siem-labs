@@ -1,4 +1,4 @@
-# Splunk: The Basics
+w# Splunk: The Basics
 
 ## Project Overview
 
@@ -36,6 +36,14 @@ During this lab I learned how to:
 ![Splunk Room Overview](images/01-room-overview.png)
 
 This room introduces Splunk Enterprise and provides a beginner-friendly introduction to using a Security Information and Event Management (SIEM) platform. The exercises focus on navigating the interface and performing basic searches using Search Processing Language (SPL).
+
+--- 
+
+## Splunk Interface
+
+![Splunk Interface](images/02-splunk-interface.png)
+
+I accessed the Splunk environment and explored the main interface, including the search functionality used to query and analyze indexed data.
 
 ---
 
