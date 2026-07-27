@@ -33,7 +33,7 @@ During this lab I learned how to:
 
 ### Room Overview
 
-**Screenshot:** `01-room-overview.png`
+![Splunk Room Overview](images/01-room-overview.png)
 
 This room introduces Splunk Enterprise and provides a beginner-friendly introduction to using a Security Information and Event Management (SIEM) platform. The exercises focus on navigating the interface and performing basic searches using Search Processing Language (SPL).
 
