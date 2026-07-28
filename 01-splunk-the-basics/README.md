@@ -152,7 +152,8 @@ index=VPN_logs
 Used to extract fields from structured data, allowing additional filtering and analysis.
 Example:
 
-```| spath
+```
+| spath
 ```
 
 ---
@@ -162,7 +163,8 @@ Example:
 Used to filter events based on specific field values.
 Example:
 
-```| search UserName="Maleena"
+```
+| search UserName="Maleena"
 ```
 
 ---
@@ -172,7 +174,8 @@ Example:
 Used to calculate statistics and summarize search results.
 Example:
 
-```| stats count
+```
+| stats count
 ```
 
 ---
