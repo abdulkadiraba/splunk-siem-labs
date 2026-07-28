@@ -1,31 +1,44 @@
-w# Splunk: The Basics
+# Splunk: The Basics
 
 ## Project Overview
 
-This project documents my completion of the TryHackMe **Splunk: The Basics** room. The purpose of this lab was to become familiar with the Splunk Enterprise interface and understand the fundamental workflow analysts use to search and explore indexed log data.
+This project documents my completion of the TryHackMe **Splunk: The Basics** room. The goal of this lab was to develop foundational skills using Splunk Enterprise, a Security Information and Event Management (SIEM) platform used by security teams to collect, search, and analyze log data.
+
+During this lab, I practiced querying VPN log data using Splunk Search Processing Language (SPL), filtering events, extracting fields, and analyzing security-related information from indexed data.
 
 ---
 
 ## Lab Information
 
 | Category | Details |
-|----------|----------|
+|----------|---------|
 | Platform | TryHackMe |
 | Difficulty | Easy |
 | Tool | Splunk Enterprise |
-| Focus | SIEM Fundamentals |
+| Category | SIEM Fundamentals |
+| Data Source | VPN Logs |
 
 ---
 
-## Learning Objectives
+## Objectives
 
-During this lab I learned how to:
+- Understand the basics of the Splunk interface
+- Learn how indexed data can be searched and analyzed
+- Practice writing basic SPL queries
+- Filter events using fields and conditions
+- Use SPL commands to summarize log data
 
-- Navigate the Splunk interface
-- Use the Search & Reporting application
-- Execute basic SPL searches
-- Explore indexed event data
-- Understand the structure of search results
+---
+
+## Skills Practiced
+
+- Splunk navigation
+- SPL querying
+- Log analysis fundamentals
+- Event filtering
+- Field extraction using `spath`
+- Data aggregation using `stats`
+- Basic security investigation workflow
 
 ---
 
