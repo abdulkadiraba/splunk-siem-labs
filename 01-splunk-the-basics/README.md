@@ -152,7 +152,7 @@ index=VPN_logs
 Used to extract fields from structured data, allowing additional filtering and analysis.
 Example:
 
-```
+```spl
 | spath
 ```
 
@@ -163,7 +163,7 @@ Example:
 Used to filter events based on specific field values.
 Example:
 
-```
+```spl
 | search UserName="Maleena"
 ```
 
@@ -174,7 +174,7 @@ Example:
 Used to calculate statistics and summarize search results.
 Example:
 
-```
+```spl
 | stats count
 ```
 
@@ -185,4 +185,3 @@ Example:
 This lab provided a foundation for using Splunk as a SIEM platform. I learned how security analysts can search indexed log data, extract useful fields, filter events, and summarize findings using SPL.
 The exercises helped me understand the basic workflow of analyzing security logs and will support future projects involving threat detection, incident investigation, and security monitoring
 
----
