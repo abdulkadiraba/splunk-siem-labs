@@ -59,6 +59,25 @@ index=VPN_logs
 
 This search returned **2,862 events**, confirming that the VPN log data had been successfully indexed and was available for analysis. This exercise introduced the process of retrieving events from a specific index before performing more targeted searches.
 
+---
+
+## Filtering Events by Username
+
+![User Search Count](images/04-user-search-count.png)
+
+I refined my search by parsing the VPN log data with 'spath', filtering events for the user **Maleena**, and using the 'stats count' command to determine how many matching events were present. 
+
+**SPL Query** 
+
+'''spl
+index=VPN_logs
+| spath
+| search UserName="Maleena" 
+| stats count 
+'''
+
+This exercise demonstrated how SPL can be used to filter log data and summarize results, which is a common technique when investigating user activity within security logs. 
+
 
 ### Splunk Home Dashboard
 
