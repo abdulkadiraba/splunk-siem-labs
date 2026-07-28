@@ -45,7 +45,20 @@ This room introduces Splunk Enterprise and provides a beginner-friendly introduc
 
 I accessed the Splunk environment and explored the main interface, including the search functionality used to query and analyze indexed data.
 
----
+--- 
+
+## Searching VPN Logs
+
+![VPN Log Search](images/03-vpn-log-search.png)
+
+To begin exploring the dataset, I queried the `VPN_logs` index using the following SPL search:
+
+```spl
+index=VPN_logs
+```
+
+This search returned **2,862 events**, confirming that the VPN log data had been successfully indexed and was available for analysis. This exercise introduced the process of retrieving events from a specific index before performing more targeted searches.
+
 
 ### Splunk Home Dashboard
 
