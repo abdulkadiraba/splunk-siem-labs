@@ -131,57 +131,55 @@ This query demonstrates how SPL can exclude specific values from a dataset using
 
 ---
 
-### Splunk Home Dashboard
+## Key SPL Commands Learned
 
-**Screenshot:** `02-home-dashboard.png`
+During this lab, I practiced several foundational Splunk Search Processing Language (SPL) commands:
 
-After launching Splunk Enterprise, I explored the main dashboard to become familiar with the interface and available applications.
+### index
 
----
+Used to search data stored within a specific Splunk index.
 
-### Search & Reporting
+Example:
 
-**Screenshot:** `03-search-reporting.png`
-
-The Search & Reporting application is the primary workspace for analysts. It allows users to search indexed events, filter data, and investigate system activity using SPL.
-
----
-
-### Executing a Search
-
-**Screenshot:** `04-first-search.png`
-
-I executed my first search using SPL. Splunk returned matching events from indexed log data, demonstrating how searches are used to retrieve information for analysis.
+```spl
+index=VPN_logs
+```
 
 ---
 
-### Reviewing Search Results
+### spath
 
-**Screenshot:** `05-search-results.png`
+Used to extract fields from structured data, allowing additional filtering and analysis.
+Example:
 
-The search results display event data together with metadata such as timestamps and extracted fields. This information helps analysts understand the context of each event.
-
----
-
-### Lab Completion
-
-**Screenshot:** `06-room-complete.png`
-
-Successfully completed all tasks in the Splunk: The Basics room. This lab established a foundation for using Splunk Enterprise and understanding the role of SIEM platforms in cybersecurity operations.
+```| spath
+```
 
 ---
 
-## Skills Demonstrated
+### search
 
-- Splunk Enterprise
-- SIEM Fundamentals
-- Search Processing Language (SPL)
-- Log Exploration
-- Event Searching
-- Security Operations Basics
+Used to filter events based on specific field values.
+Example:
+
+```| search UserName="Maleena"
+```
+
+---
+
+### stats
+
+Used to calculate statistics and summarize search results.
+Example:
+
+```| stats count
+```
 
 ---
 
 ## Lessons Learned
 
-Although this was an introductory lab, it provided a solid understanding of the Splunk interface and basic search workflow. Learning how to navigate Splunk and retrieve log data is an essential first step before performing more advanced investigations, threat hunting, and incident response.
+This lab provided a foundation for using Splunk as a SIEM platform. I learned how security analysts can search indexed log data, extract useful fields, filter events, and summarize findings using SPL.
+The exercises helped me understand the basic workflow of analyzing security logs and will support future projects involving threat detection, incident investigation, and security monitoring
+
+---
