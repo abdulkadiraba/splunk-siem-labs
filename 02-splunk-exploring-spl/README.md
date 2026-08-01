@@ -1,3 +1,7 @@
+![Thumbnail Image](images/TryHackMe Exploring SPL Image Thumbnail.jpg).
+
+# Splunk: Exploring SPL
+
 ## Project Overview
 
 This project documents my hands-on experience using Splunk Search Processing Language (SPL) to investigate and analyze security event data.
