@@ -234,7 +234,7 @@ Adding location information to IP addresses provides additional details that can
 
 # Assigning Risk Scores Using Lookup Data
 
-![Lookup Risk Score](images/13-lookup-risk-score.png)
+![Lookup Risk Score](images/13-lookup-command.png)
 
 ```spl
 index=windowslogs
@@ -254,7 +254,7 @@ This exercise showed me how Splunk can combine log data with additional informat
 
 # Detecting VPN Country Anomalies
 
-![VPN Country Anomaly Detection](images/14-vpn-country-anomaly-detection.png)
+![VPN Country Anomaly Detection](images/14-vpn-country-anomaly.png)
 
 ```spl
 index=vpnlogs
@@ -275,7 +275,7 @@ This helped me understand how authentication data can be analyzed for unusual ge
 
 # Detecting VPN Login Time Anomalies
 
-![VPN Login Time Anomaly Detection](images/15-vpn-login-time-anomaly-detection.png)
+![VPN Login Time Anomaly Detection](images/15-anomalous-vpn-logins.png)
 
 ```spl
 index=vpnlogs
