@@ -1,4 +1,4 @@
-![Thumbnail Image](images/TryHackMe Exploring SPL Image Thumbnail.jpg).
+![TryHackMe thumbnail](images/thumbnail-tryhackme.png)
 
 # Splunk: Exploring SPL
 
