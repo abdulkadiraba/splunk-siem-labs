@@ -51,10 +51,9 @@ This screenshot shows the TryHackMe room used for this project, where I practice
 
 ![Splunk Interface](images/02-splunk-interface.png)
 
-This screenshot shows the Splunk interface used throughout the lab to search, filter, and analyze Windows and VPN log data.
+This screenshot shows the Splunk interface that I used throughout the lab to search, filter, and analyze Windows and VPN log data.
 
 ---
-
 
 ## Searching Events Within a Specific Time Range
 
@@ -237,7 +236,6 @@ Adding location information to IP addresses provides additional details that can
 
 ![Lookup Risk Score](images/13-lookup-risk-score.png)
 
-
 ```spl
 index=windowslogs
 | lookup image_risk score Image OUTPUT Riskscore
@@ -295,9 +293,7 @@ index=vpnlogs
 I used this query to analyze VPN login times and compare each user's login activity against their typical behavior. The query calculates a z-score by comparing each login time against the user's average login time and standard deviation. I then filtered for events where the z-score was greater than 3 and sorted the results to review the most unusual login activity.
 
 ### What I Learned:
-
-This exercise helped me understand how statistical analysis can be applied to authentication logs. By measuring how far a login time deviates from a user's normal pattern, I was able to identify authentication events that were significantly different from expected behavior and may require further investigation.
----
+This exercise helped me understand how statistical analysis can be applied to authentication logs. By measuring how far a login time deviates from a user's normal pattern, I was able to identify authentication events that were significantly different from expected behavior and may require further investigations. 
 
 # Key Takeaways & Portfolio Growth
 
