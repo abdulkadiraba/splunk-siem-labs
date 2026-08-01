@@ -1,14 +1,14 @@
 ## Project Overview
 
-This project documents my hands-on experience using Splunk Search Processing Language (SPL) to investigate security event data.
+This project documents my hands-on experience using Splunk Search Processing Language (SPL) to investigate and analyze security event data.
 
-During this lab, I used SPL commands to investigate process activity, review event details, enrich log data, assign risk scores, and identify unusual authentication patterns.
+During this lab, I used SPL queries to search Windows and VPN logs, investigate process activity, filter and organize event data, enrich logs with additional information, assign risk scores to executable files, and identify unusual authentication behavior.
 
-## Lab Source 
+## Lab Source
 
 - **Platform:** [TryHackMe](https://tryhackme.com)
-- **Room Link:** [Splunk: Exploring SPL](https://tryhackme.com/room/splunkexploringspl).
- 
+- **Room Link:** [Splunk: Exploring SPL](https://tryhackme.com/room/splunkexploringspl)
+
 ---
 
 ## Skills Demonstrated
@@ -39,7 +39,26 @@ During this lab, I used SPL commands to investigate process activity, review eve
 
 # SPL Queries Practiced
 
+## TryHackMe Room Overview
+
+![TryHackMe Room Overview](images/01-room-overview.png)
+
+This screenshot shows the TryHackMe room used for this project, where I practiced using Splunk Search Processing Language (SPL) to analyze security event data.
+
+---
+
+## Splunk Interface
+
+![Splunk Interface](images/02-splunk-interface.png)
+
+This screenshot shows the Splunk interface used throughout the lab to search, filter, and analyze Windows and VPN log data.
+
+---
+
+
 ## Searching Events Within a Specific Time Range
+
+![Time Range Search](images/03-time-range-search.png)
 
 ```spl
 index=windowslogs earliest="04/15/2022:08:05:00" latest="04/15/2022:08:06:00"
@@ -47,14 +66,16 @@ index=windowslogs earliest="04/15/2022:08:05:00" latest="04/15/2022:08:06:00"
 ```
 
 ### Purpose:
-I used this query to search Windows logs within a specific timeframe and count the number of events that occurred during that period.
+I used this query to narrow Windows log data down to a specific timeframe and count the number of events generated during that period.
 
 ### What I Learned:
-Time-based searches allow me to focus on activity that occurred during a specific window of time, which is useful when investigating a security event or reviewing activity around an alert.
+Time-based searches are important when investigating security events because they allow me to focus on activity that occurred around a specific incident, alert, or point of interest.
 
 ---
 
 # Filtering Fields From Events
+
+![Fields Command](images/04-fields-command.png)
 
 ```spl
 index=windowslogs
@@ -62,10 +83,10 @@ index=windowslogs
 ```
 
 ### Purpose:
-I used the `fields` command to display only the information needed for analysis. This allowed me to focus on domain information and process identifiers.
+I used the `fields` command to display only the information needed for my investigation. This allowed me to focus on domain information and process identifiers instead of viewing unnecessary fields.
 
 ### What I Learned:
-Filtering unnecessary fields helps reduce clutter in large datasets and allows me to focus on the information most relevant to an investigation.
+Selecting relevant fields makes large amounts of log data easier to analyze and helps reduce unnecessary information during an investigation.
 
 ---
 
@@ -73,20 +94,24 @@ Filtering unnecessary fields helps reduce clutter in large datasets and allows m
 
 ## Account Information Table
 
+![Table Command](images/05-table-command.png)
+
 ```spl
 index=windowslogs
 | table EventID AccountName AccountType
 ```
 
 ### Purpose:
-I used the `table` command to organize specific event fields into a structured format.
+I used the `table` command to organize selected fields into a readable format containing event IDs and account information.
 
 ### What I Learned:
-Creating tables makes log data easier to read and helps highlight important details such as event IDs and account information.
+Formatting results into tables makes it easier to review important event details and quickly identify the information I need from log data.
 
 ---
 
 ## Process Timeline Investigation
+
+![Process Timeline Investigation](images/06-table-process-timeline.png)
 
 ```spl
 index=windowslogs EventID=1
@@ -95,14 +120,16 @@ index=windowslogs EventID=1
 ```
 
 ### Purpose:
-I used this query to examine Windows process creation events and display parent and child process information in chronological order.
+I used this query to review Windows process creation events and display information about parent processes, child processes, and command-line activity in chronological order.
 
 ### What I Learned:
-Reviewing process relationships helps provide additional context when investigating how processes were created and executed.
+Analyzing process relationships helps me understand how programs were launched and provides additional details when reviewing suspicious execution activity.
 
 ---
 
 # Finding Common Values Using the `top` Command
+
+![Top Command](images/07-top-command.png)
 
 ```spl
 index=windowslogs
@@ -110,14 +137,16 @@ index=windowslogs
 ```
 
 ### Purpose:
-I used the `top` command to identify the most frequently occurring values within the `Image` field.
+I used the `top` command to identify the most frequently occurring values in the `Image` field.
 
 ### What I Learned:
-The `top` command helps summarize large amounts of data by showing the values that appear most often. This can help establish what activity is common within the dataset.
+This helped me understand which executable files appeared most often within the dataset and provided a better understanding of common activity in the environment.
 
 ---
 
-# Removing Duplicate Values Using `dedup`
+# Removing Duplicate Values Using `dedup` 
+
+![Dedup Command](images/08-dedup-command.png)
 
 ```spl
 index=windowslogs
@@ -125,14 +154,16 @@ index=windowslogs
 ```
 
 ### Purpose:
-I used the `dedup` command to remove duplicate values from the search results.
+I used the `dedup` command to remove repeated values from the search results based on the `Image` field.
 
 ### What I Learned:
-Removing duplicate results helps make data easier to review by reducing repeated information.
+Removing duplicate results helps simplify the output and allows me to focus on unique executable entries instead of repeated information.
 
 ---
 
 # Renaming Fields
+
+![Rename Command](images/09-rename-command.png)
 
 ```spl
 index=windowslogs
@@ -141,10 +172,10 @@ index=windowslogs
 ```
 
 ### Purpose:
-I used the `fields` command to select the information I wanted to review and then used `rename` to change the `User` field to `Employee` for easier interpretation.
+I used the `fields` command to select specific information I wanted to review and then renamed the `User` field to `Employee` to make the output easier to understand.
 
 ### What I Learned:
-Renaming fields improves readability when analyzing log data and documenting investigation results.
+Renaming fields can make search results clearer and easier to interpret when reviewing or documenting investigation findings.
 
 ---
 
@@ -152,20 +183,24 @@ Renaming fields improves readability when analyzing log data and documenting inv
 
 ## Filtering Executable Files
 
+![Regex Executable Filter](images/10-regex-exe-filter.png)
+
 ```spl
 index=windowslogs
 | regex Image="\.exe$"
 ```
 
 ### Purpose:
-I used the regex command to filter windows logs event where the `Image` field ends with `.exe`. The expression `\.exe$` matches values that end with the executable file extension. 
+I used the `regex` command to filter Windows log events where the `Image` field ends with `.exe`. The expression `\.exe$` matches values that end with the executable file extension.
 
 ### What I Learned:
-Regular expressions allow me to search for specific patterns within log data. In this case, I used regex to narrow down events involving executable files. 
+Regex allows me to search for specific patterns within log fields. In this case, I used regex to narrow down events involving executable files.
 
 ---
 
 ## Filtering Registry Activity
+
+![Regex Target Object Filter](images/11-regex-targetobject-filter.png)
 
 ```spl
 index=windowslogs
@@ -173,14 +208,16 @@ index=windowslogs
 ```
 
 ### Purpose:
-I used regex to filter events where the `TargetObject` field matched a specific pattern.
+I used the `regex` command to filter events where the `TargetObject` field ended with the value "Manager".
 
 ### What I Learned:
-Regex provides flexibility when searching through large datasets where exact matches may not be enough.
+This helped me understand how regex can be used in Splunk to search for patterns within event fields instead of relying only on exact matches.
 
 ---
 
 # Enriching IP Addresses With Geographic Information
+
+![IP Location Command](images/12-iplocation-command.png)
 
 ```spl
 index=windowslogs
@@ -189,14 +226,17 @@ index=windowslogs
 ```
 
 ### Purpose:
-I used the `iplocation` command to add geographic information to IP addresses and summarize events by region.
+I used the `iplocation` command to add geographic information to source IP addresses and summarize the results by region.
 
 ### What I Learned:
-Adding geographic context to IP addresses provides additional information when reviewing network activity.
+Adding location information to IP addresses provides additional details that can help when reviewing network activity and identifying unusual access patterns.
 
 ---
 
-# Assigning Risk Scores Using Lookup Tables
+# Assigning Risk Scores Using Lookup Data
+
+![Lookup Risk Score](images/13-lookup-risk-score.png)
+
 
 ```spl
 index=windowslogs
@@ -207,14 +247,16 @@ index=windowslogs
 ```
 
 ### Purpose:
-I used a lookup table to match executable names with risk scores and identify events associated with higher-risk images.
+I used the `lookup` command to compare executable names found in Windows logs against a risk scoring dataset. When an executable matched an entry in the lookup data, Splunk added the corresponding risk score to the event. I then filtered the results to show events with a risk score of 3.
 
 ### What I Learned:
-Lookup tables allow additional context to be added to raw event data, making it easier to prioritize information during an investigation.
+This exercise showed me how Splunk can combine log data with additional information to provide more context during an investigation. Instead of only seeing which executable ran, I was able to associate it with a risk score and identify higher-risk activity.
 
 ---
 
 # Detecting VPN Country Anomalies
+
+![VPN Country Anomaly Detection](images/14-vpn-country-anomaly-detection.png)
 
 ```spl
 index=vpnlogs
@@ -229,11 +271,13 @@ index=vpnlogs
 I used this query to compare user login activity across different countries and identify locations that were uncommon for a user's normal behavior.
 
 ### What I Learned:
-Analyzing login locations can help identify unusual authentication activity that may require further investigation.
+This helped me understand how authentication data can be analyzed for unusual geographic patterns that may require additional investigation.
 
 ---
 
 # Detecting VPN Login Time Anomalies
+
+![VPN Login Time Anomaly Detection](images/15-vpn-login-time-anomaly-detection.png)
 
 ```spl
 index=vpnlogs
@@ -248,15 +292,20 @@ index=vpnlogs
 ```
 
 ### Purpose:
-I used statistical analysis to compare VPN login times against typical user behavior and identify login events that significantly deviated from the normal pattern.
+I used this query to analyze VPN login times and compare each user's login activity against their typical behavior. The query calculates a z-score by comparing each login time against the user's average login time and standard deviation. I then filtered for events where the z-score was greater than 3 and sorted the results to review the most unusual login activity.
 
 ### What I Learned:
-Behavioral analysis can help identify unusual authentication activity that may indicate suspicious account behavior.
 
+This exercise helped me understand how statistical analysis can be applied to authentication logs. By measuring how far a login time deviates from a user's normal pattern, I was able to identify authentication events that were significantly different from expected behavior and may require further investigation.
 ---
 
-# Key Takeaways
+# Key Takeaways & Portfolio Growth
 
-Through this lab, I gained practical experience using Splunk for security log analysis. I practiced searching Windows and VPN logs, filtering information, investigating processes, enriching data, and identifying abnormal activity patterns.
+- **Noise Reduction:** Completing this TryHackMe lab helped me understand the importance of filtering and organizing large amounts of log data. Using commands like `fields` and `dedup` allowed me to reduce unnecessary information and focus on the events most relevant to an investigation.
+
+- **Data Enrichment:**  I learned that raw log data sometimes does not really provide enough context by itself. Using commands like `iplocation` allowed me to add geographic information to source IP addresses, while lookup data allowed me to associate executable names with risk scores. These techniques helped me understand how additional context can make security events easier to analyze.
+
+- **Statistical Baselining:** Working through the VPN login time anomaly detection query introduced me to behavioral analysis techniques used in security monitoring. By analyzing how the query calculated deviations from typical login behavior using a z-score, I learned how statistical methods can help identify unusual authentication activity.
+
 
 This project strengthened my understanding of how SIEM tools can be used to analyze security events and investigate potential threats.
